@@ -89,9 +89,9 @@ def phonebook():
                     
                     if n_name_0.strip() == "":
                         print(" ")
-                        print("***********************************************************")
+                        print("*****************************************************************")
                         print("ERROR: The inserted name is not defined (empty space), try again.")
-                        print("***********************************************************")
+                        print("*****************************************************************")
                         print(" ")
                         input("Press enter to proceed... ")
                         continue
@@ -134,9 +134,9 @@ def phonebook():
                     
                     if n_name_1.strip() == "":
                         print(" ")
-                        print("***********************************************************")
+                        print("*****************************************************************")
                         print("ERROR: The inserted name is not defined (empty space), try again.")
-                        print("***********************************************************")
+                        print("*****************************************************************")
                         print(" ")
                         input("Press enter to proceed... ")
                         print(" ")
@@ -156,9 +156,9 @@ def phonebook():
 
                             if n_name_2.strip() == "":
                                 print(" ")
-                                print("***********************************************************")
+                                print("*****************************************************************")
                                 print("ERROR: The inserted name is not defined (empty space), try again.")
-                                print("***********************************************************")
+                                print("*****************************************************************")
                                 print(" ")
                                 input("Press enter to proceed... ")
                                 continue
@@ -186,9 +186,9 @@ def phonebook():
                             n_name_3 = input("Type in the new name: ").lower()
                             if n_name_3.strip() == "":
                                 print(" ")
-                                print("***********************************************************")
+                                print("*****************************************************************")
                                 print("ERROR: The inserted name is not defined (empty space), try again.")
-                                print("***********************************************************")
+                                print("*****************************************************************")
                                 print(" ")
                                 input("Press enter to proceed... ")
                                 continue
@@ -245,9 +245,9 @@ def phonebook():
                         n_name_4 = input("Insert the contacts name: ").lower()
                         if n_name_4.strip() == "":
                             print(" ")
-                            print("***********************************************************")
+                            print("*****************************************************************")
                             print("ERROR: The inserted name is not defined (empty space), try again.")
-                            print("***********************************************************")
+                            print("*****************************************************************")
                             print(" ")
                             input("Press enter to proceed... ")
                             continue
