@@ -15,14 +15,26 @@ file_path = os.path.join(current_dir, "phonebook.pkl")
 
 
 def control():
-    progress = input("To continue type continue (or c).\n"
-                     "To return to the main menu type abandon (or a)\n"
-                     "Inserted value: ")
+    while True:
+        progress = input("To continue type continue (or c).\n"
+                        "To return to the main menu type abandon (or a)\n"
+                        "Inserted value: ").strip().lower()
 
-    if progress in ("abandon".lower(), "a".lower()):
-        return False
-    else:
-        return True
+        if progress in ("abandon", "a"):
+            return False
+            
+        elif progress in ("continue", "c"): 
+            return True
+            
+        else:
+            print(" ")
+            print("***********************************************************")
+            print("ERROR: The inserted value is not in the domain, try again.")
+            print("***********************************************************")
+            print(" ")
+            input("Press enter to proceed... ")
+            continue
+
 
     
 
@@ -74,6 +86,16 @@ def phonebook():
                     print(" ")
             
                     n_name_0 = input("Insert the contacts name: ").lower()
+                    
+                    if n_name_0.strip() == "":
+                        print(" ")
+                        print("***********************************************************")
+                        print("ERROR: The inserted name is not defined (empty space), try again.")
+                        print("***********************************************************")
+                        print(" ")
+                        input("Press enter to proceed... ")
+                        continue
+
                     surname_0 = input("Insert the contacts surname: ").lower()
                     name = (n_name_0, surname_0)
 
@@ -109,6 +131,17 @@ def phonebook():
                     print(" ")
                     
                     n_name_1 = input("Insert the contacts name: ").lower()
+                    
+                    if n_name_1.strip() == "":
+                        print(" ")
+                        print("***********************************************************")
+                        print("ERROR: The inserted name is not defined (empty space), try again.")
+                        print("***********************************************************")
+                        print(" ")
+                        input("Press enter to proceed... ")
+                        print(" ")
+                        continue
+
                     surname_1= input("Insert the contacts surname: ").lower()
                     name = (n_name_1, surname_1)
                     print(" ")
@@ -120,6 +153,16 @@ def phonebook():
                         print(" ")
                         if local_digit_0 == "1":
                             n_name_2 = input("Type in the new name: ").lower()
+
+                            if n_name_2.strip() == "":
+                                print(" ")
+                                print("***********************************************************")
+                                print("ERROR: The inserted name is not defined (empty space), try again.")
+                                print("***********************************************************")
+                                print(" ")
+                                input("Press enter to proceed... ")
+                                continue
+
                             surname_2 = input("Type in the new surname: ").lower()
                             new_name = (n_name_2, surname_2)
                             phonebook[new_name] = phonebook[name]
@@ -141,6 +184,15 @@ def phonebook():
 
                         elif local_digit_0 == "3":
                             n_name_3 = input("Type in the new name: ").lower()
+                            if n_name_3.strip() == "":
+                                print(" ")
+                                print("***********************************************************")
+                                print("ERROR: The inserted name is not defined (empty space), try again.")
+                                print("***********************************************************")
+                                print(" ")
+                                input("Press enter to proceed... ")
+                                continue
+
                             surname_3 = input("Type in the new surname: ").lower()
                             new_name = (n_name_3, surname_3)
                             new_number = input(f"Type in the new number for {n_name_3}: ")
@@ -191,6 +243,14 @@ def phonebook():
                     print(" ")
                     if local_digit_1 == "1":
                         n_name_4 = input("Insert the contacts name: ").lower()
+                        if n_name_4.strip() == "":
+                            print(" ")
+                            print("***********************************************************")
+                            print("ERROR: The inserted name is not defined (empty space), try again.")
+                            print("***********************************************************")
+                            print(" ")
+                            input("Press enter to proceed... ")
+                            continue
                         surname_4 = input("Insert the contacts surname: ").lower()
                         name = (n_name_4, surname_4)
                         if name in phonebook:
