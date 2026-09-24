@@ -33,6 +33,7 @@ def control():
             print("***********************************************************")
             print(" ")
             input("Press enter to proceed... ")
+            print(" ")
             continue
 
 
@@ -235,6 +236,7 @@ def phonebook():
                     if control() == False:
                         break
                     print(" ")
+                    subprocess.run('cls', shell=True)
                     
                     local_digit_1 = input("To search a contacts number insert 1.\n"
                                             "To search the corresponding contacts to a certain number insert 2.\n"
@@ -256,12 +258,14 @@ def phonebook():
                         if name in phonebook:
                             print(" ")
                             print(f"The contacts number is === {phonebook[name]} ===.")
+                            print(" ")
                             input("Press enter to return to the main menu... ")
                             print(" ")
                             break
                         else:
                             print(" ")
                             print("The given name does not exist, try again.")
+                            print(" ")
                             input("Press enter to proceed... ")
                             print(" ")
                             continue
@@ -276,12 +280,14 @@ def phonebook():
                         if len(local_names) == 0:
                             print(" ")
                             print("The given number does not exist, try again.")
+                            print(" ")
                             input("Press enter to proceed... ")
                             print(" ")
                             continue
                         else:
                             print(" ")
                             input("Press enter to return to the main menu... ")
+                            
                             break
 
                     elif local_digit_1 == "3":
