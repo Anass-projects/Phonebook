@@ -1,9 +1,14 @@
 import subprocess
 import pickle
 import os
+import sys
 
-#The directory where this script is located
-current_dir = os.path.dirname(os.path.abspath(__file__))
+
+#Check if we run .exe file or normal script
+if getattr(sys, 'frozen', False):
+    current_dir = os.path.dirname(sys.executable)
+else:
+    current_dir = os.path.dirname(os.path.abspath(__file__))
 
 #Creation the path for the pickle database
 file_path = os.path.join(current_dir, "phonebook.pkl")
