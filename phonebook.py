@@ -4,6 +4,7 @@ import os
 import sys
 
 
+
 #Check if we run .exe file or normal script
 if getattr(sys, 'frozen', False):
     current_dir = os.path.dirname(sys.executable)
@@ -71,15 +72,15 @@ def phonebook():
                       "To change a contact in your phonebook dial 2.\n" 
                       "To search contacts dial 3.\n"
                       "To save the changes and leave the menu dial 4.\n" 
-                      "Inserted value: ")
+                      "Inserted value: ").strip()
         print(" ")
         
 
         #Operateable values control
-        if digit == "1" or digit == "2" or digit == "3":
+        if digit in ("1", "2", "3"):
 
             #Number add
-            if digit == "1":
+            if digit == "1": 
                 while True:
                     subprocess.run('cls', shell=True)
                     if control() == False:
