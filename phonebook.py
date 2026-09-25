@@ -41,8 +41,8 @@ def control():
 
 def phonebook():
     '''
-    PHONEBOOK MENU PROGRAM
-    RETURNS PHONEBOOK
+    PHONEBOOK PROGRAM
+    
     '''
 
     print("========================================")
