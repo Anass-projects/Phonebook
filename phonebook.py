@@ -18,8 +18,8 @@ file_path = os.path.join(current_dir, "phonebook.pkl")
 def control():
     while True:
         progress = input("To continue type continue (or c).\n"
-                        "To return to the main menu type abandon (or a)\n"
-                        "Inserted value: ").strip().lower()
+                         "To return to the main menu type abandon (or a)\n"
+                         "Inserted value: ").strip().lower()
 
         if progress in ("abandon", "a"):
             return False
@@ -88,35 +88,37 @@ def phonebook():
         subprocess.run('cls', shell=True)
 
         #Options menu
-        digit = input("------------------ MAIN MENU ------------------\n"
+        digit = input("--------------- MAIN MENU ---------------\n"
                       "\n"
-                      "To add a contact dial 1.\n"
+                      "To add a new contact dial 1.\n"
                       "To delete a contact dial 2.\n"
-                      "To change a contact dial 3.\n" 
-                      "To search contacts dial 4.\n"
-                      "To save the changes and leave the menu dial 5.\n" 
+                      "To edit a contact dial 3.\n" 
+                      "To search for contact dial 4.\n"
+                      "To save changes and exit dial 5.\n" 
                       "Inserted value: ").strip()
         print(" ")
         
 
-        #Operateable values control
+        #Operable values control
         if digit in ("1", "2", "3", "4"):
 
             #Number add
             if digit == "1": 
                 while True:
                     subprocess.run('cls', shell=True)
+                    print("------------ ADD NEW CONTACT ------------\n")
+                    print(" ")
                     if control() == False:
                         break
                     print(" ")
             
-                    name = " ".join(input("Insert the contacts name: ").lower().split())
+                    name = " ".join(input("Insert the contact's name: ").lower().split())
                     
                     if strip_control(name) == True:
                         continue
                     print(" ")  
 
-                    surname = " ".join(input("Insert the contacts surname: ").lower().split())
+                    surname = " ".join(input("Insert the contact's surname: ").lower().split())
                     name_key = (name, surname)
 
                     if name_key in phonebook:
@@ -126,7 +128,7 @@ def phonebook():
                         print(" ")
                         continue
                     else:
-                        number = input("Insert the contacts number: ").strip()
+                        number = input(f"Insert the number for {name.title()} {surname.title()}: ").strip()
                         phonebook[name_key] = number
                         print(" ")
                         print("Contact was added successfully.")
@@ -142,14 +144,17 @@ def phonebook():
                     if len_control(phonebook) == False:
                         break
 
+                    print("------------- DELETE CONTACT ------------\n")
+                    print(" ")
+
                     if control() == False:
                         break
                     print(" ")
 
-                    name = " ".join(input("Insert the contacts name: ").lower().split())
+                    name = " ".join(input("Insert the contact's name: ").lower().split())
                     if strip_control(name) == True:
                         continue
-                    surname = " ".join(input("Insert the contacts surname: ").lower().split())
+                    surname = " ".join(input("Insert the contact's surname: ").lower().split())
                     name_key = (name, surname)
                     print(" ")
 
@@ -172,7 +177,6 @@ def phonebook():
                         continue
 
 
-            
             #Contact change
             if digit == "3":
                 while True:
@@ -181,16 +185,19 @@ def phonebook():
                     if len_control(phonebook) == False:
                         break
 
+                    print("-------------- EDIT CONTACT -------------\n")
+                    print(" ")
+
                     if control() == False:
                         break
                     print(" ")
                     
-                    name = " ".join(input("Insert the contacts name: ").lower().split())
+                    name = " ".join(input("Insert the contact's name: ").lower().split())
                     
                     if strip_control(name) == True:
                         continue
 
-                    surname = " ".join(input("Insert the contacts surname: ").lower().split())
+                    surname = " ".join(input("Insert the contact's surname: ").lower().split())
                     name_key = (name, surname)
                     print(" ")
                     if name_key in phonebook:
@@ -225,7 +232,7 @@ def phonebook():
                             break
 
                         elif local_digit == "2":
-                            new_number = input(f"Type in the new number for {name}: ").strip()
+                            new_number = input(f"Type in the new number for {name.title()} {surname.title()}: ").strip()
                             phonebook[name_key] = new_number
                             print(" ")
                             print("Contact was updated successfully.")
@@ -249,7 +256,7 @@ def phonebook():
                                 print(" ")
                                 continue
 
-                            new_number = input(f"Type in the new number for {new_name}: ").strip()
+                            new_number = input(f"Type in the new number for {new_name.title()} {new_surname.title()}: ").strip()
                             phonebook[new_name_key] = new_number
                             phonebook.pop(name_key)
                             print(" ")
@@ -282,27 +289,29 @@ def phonebook():
                     if len_control(phonebook) == False:
                         break
 
+                    print("-------------- SEARCH MENU --------------\n")
+                    print(" ")
+                    
                     if control() == False:
                         break
                     print(" ")
-                    subprocess.run('cls', shell=True)
                     
-                    local_digit = input("To search a contacts number insert 1.\n"
-                                        "To search the corresponding contacts to a certain number insert 2.\n"
+                    local_digit = input("To search for a contact's number insert 1.\n"
+                                        "To find the contact corresponding to a number insert 2.\n"
                                         "To display all contacts at once insert 3.\n"
                                         "Inserted value: ").strip()
                     
                     print(" ")
                     if local_digit == "1":
-                        name = " ".join(input("Insert the contacts name: ").lower().split())
+                        name = " ".join(input("Insert the contact's name: ").lower().split())
                         if strip_control(name) == True:
                             continue
 
-                        surname = " ".join(input("Insert the contacts surname: ").lower().split())
+                        surname = " ".join(input("Insert the contact's surname: ").lower().split())
                         name_key = (name, surname)
                         if name_key in phonebook:
                             print(" ")
-                            print(f"{name.title()} {surname.title()} number is === {phonebook[name_key]} ===.")
+                            print(f"The number for {name.title()} {surname.title()} is === {phonebook[name_key]} ===.")
                             print(" ")
                             input("Press enter to return to the main menu...")
                             print(" ")
@@ -316,7 +325,7 @@ def phonebook():
                             continue
 
                     elif local_digit == "2":
-                        number = input("Insert the contacts number: ").strip()
+                        number = input("Insert the contact's number: ").strip()
                         contact_found = False
                         for name_key in phonebook:
                             if phonebook[name_key] == number:
@@ -339,7 +348,7 @@ def phonebook():
                         counter = 0
                         for name_key in phonebook:
                             counter += 1
-                            print(f"### {counter}. name: {name_key[0]} {name_key[1]}, number: {phonebook[name_key]} ###")
+                            print(f"### {counter}. Name: {name_key[0].title()} {name_key[1].title()}, Number: {phonebook[name_key]} ###")
                             print(" ")
                         input("Press enter to return to the main menu...")
                         print(" ")
@@ -362,7 +371,7 @@ def phonebook():
                 pickle.dump(phonebook, file)
 
             print(" ")
-            print("Phonebook synced succesfully...")
+            print("Phonebook synced successfully...")
 
             print(" ")
             print("============================")
