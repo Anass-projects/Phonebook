@@ -122,7 +122,7 @@ def phonebook():
                     if name_key in phonebook:
                         print(" ")
                         print("This name already exists, try again.")
-                        input("Press enter to proceed... ")
+                        input("Press enter to proceed...")
                         print(" ")
                         continue
                     else:
@@ -130,7 +130,7 @@ def phonebook():
                         phonebook[name_key] = number
                         print(" ")
                         print("Contact was added successfully.")
-                        input("Press enter to return to the main menu... ")
+                        input("Press enter to return to the main menu...")
                         print(" ")
                         break
 
@@ -167,7 +167,7 @@ def phonebook():
                     else:
                         print(" ")
                         print("The given name does not exist, try again.")
-                        input("Press enter to proceed... ")
+                        input("Press enter to proceed...")
                         print(" ")
                         continue
 
@@ -195,9 +195,9 @@ def phonebook():
                     print(" ")
                     if name_key in phonebook:
                         local_digit = input("To change the name insert 1.\n"
-                                              "To change the number insert 2.\n"
-                                              "To change the name and number insert 3.\n"
-                                              "Inserted value: ").strip()
+                                            "To change the number insert 2.\n"
+                                            "To change the name and number insert 3.\n"
+                                            "Inserted value: ").strip()
                         print(" ")
                         if local_digit == "1":
                             new_name = " ".join(input("Type in the new name: ").lower().split())
@@ -211,7 +211,7 @@ def phonebook():
                             phonebook.pop(name_key)
                             print(" ")
                             print("Contact was updated successfully.")
-                            input("Press enter to return to the main menu... ")
+                            input("Press enter to return to the main menu...")
                             print(" ")
                             break
 
@@ -236,7 +236,7 @@ def phonebook():
                             phonebook.pop(name_key)
                             print(" ")
                             print("Contact was updated successfully.")
-                            input("Press enter to return to the main menu... ")
+                            input("Press enter to return to the main menu...")
                             print(" ")
                             break
                         else:
@@ -246,12 +246,12 @@ def phonebook():
                             print("ERROR: The inserted value is not in the domain, try again.")
                             print("***********************************************************")
                             print(" ")
-                            input("Press enter to proceed... ")
+                            input("Press enter to proceed...")
                             continue
                     else:
                         print(" ")
                         print("The given name does not exist, try again.")
-                        input("Press enter to proceed... ")
+                        input("Press enter to proceed...")
                         print(" ")
                         continue
                         
@@ -270,9 +270,9 @@ def phonebook():
                     subprocess.run('cls', shell=True)
                     
                     local_digit = input("To search a contacts number insert 1.\n"
-                                            "To search the corresponding contacts to a certain number insert 2.\n"
-                                            "To display all contacts at once insert 3.\n"
-                                            "Inserted value: ").strip()
+                                        "To search the corresponding contacts to a certain number insert 2.\n"
+                                        "To display all contacts at once insert 3.\n"
+                                        "Inserted value: ").strip()
                     
                     print(" ")
                     if local_digit == "1":
@@ -286,14 +286,14 @@ def phonebook():
                             print(" ")
                             print(f"The contacts number is === {phonebook[name_key]} ===.")
                             print(" ")
-                            input("Press enter to return to the main menu... ")
+                            input("Press enter to return to the main menu...")
                             print(" ")
                             break
                         else:
                             print(" ")
                             print("The given name does not exist, try again.")
                             print(" ")
-                            input("Press enter to proceed... ")
+                            input("Press enter to proceed...")
                             print(" ")
                             continue
 
@@ -309,12 +309,12 @@ def phonebook():
                             print(" ")
                             print("The given number does not exist, try again.")
                             print(" ")
-                            input("Press enter to proceed... ")
+                            input("Press enter to proceed...")
                             print(" ")
                             continue
                         else:
                             print(" ")
-                            input("Press enter to return to the main menu... ")
+                            input("Press enter to return to the main menu...")
                             break
 
                     elif local_digit == "3":
@@ -323,7 +323,7 @@ def phonebook():
                             counter += 1
                             print(f"### {counter}. name: {name_key[0]} {name_key[1]}, number: {phonebook[name_key]} ###")
                             print(" ")
-                        input("Press enter to return to the main menu... ")
+                        input("Press enter to return to the main menu...")
                         print(" ")
                         break
 
@@ -334,7 +334,7 @@ def phonebook():
                         print("ERROR: The inserted value is not in the domain, try again.")
                         print("***********************************************************")
                         print(" ")
-                        input("Press enter to proceed... ")
+                        input("Press enter to proceed...")
                         continue
 
                                                     
@@ -362,7 +362,7 @@ def phonebook():
             print("ERROR: The inserted value is not in the domain, try again.")
             print("***********************************************************")
             print(" ")
-            input("Press enter to proceed... ")
+            input("Press enter to proceed...")
             continue
 
 if __name__ == "__main__":
