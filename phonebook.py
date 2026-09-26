@@ -240,7 +240,7 @@ def phonebook():
 
                             new_surname = " ".join(input("Type in the new surname: ").lower().split())
                             new_name_key = (new_name, new_surname)
-                            
+
                             #Checking for already existing contacts
                             if new_name_key in phonebook:
                                 print(" ")
@@ -302,7 +302,7 @@ def phonebook():
                         name_key = (name, surname)
                         if name_key in phonebook:
                             print(" ")
-                            print(f"The contacts number is === {phonebook[name_key]} ===.")
+                            print(f"{name.title()} {surname.title()} number is === {phonebook[name_key]} ===.")
                             print(" ")
                             input("Press enter to return to the main menu...")
                             print(" ")
@@ -321,7 +321,7 @@ def phonebook():
                         for name_key in phonebook:
                             if phonebook[name_key] == number:
                                 contact_found = True
-                                print(f"--- A corresponding contact is {name_key[0]} {name_key[1]} ---")
+                                print(f"--- A corresponding contact is {name_key[0].title()} {name_key[1].title()} ---")
 
                         if contact_found == False:
                             print(" ")
