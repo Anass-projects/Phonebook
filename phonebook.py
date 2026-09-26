@@ -3,6 +3,13 @@ import pickle
 import os
 import sys
 
+'''
+    PHONEBOOK PROGRAM
+    
+'''
+
+VERSION = "1.0.1"
+
 
 
 # Set base directory for data storage
@@ -63,10 +70,6 @@ def strip_control(value):
 
 
 def phonebook():
-    '''
-    PHONEBOOK PROGRAM
-    
-    '''
 
     print("========================================")
     print("==== Welcome to your phonebook menu ====")
