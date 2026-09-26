@@ -24,8 +24,9 @@ def control():
         if progress in ("abandon", "a"):
             return False
             
-        elif progress in ("continue", "c"): 
-            return True
+        elif progress in ("continue", "c"):
+            print(" ") 
+            break
             
         else:
             print(" ")
@@ -36,6 +37,26 @@ def control():
             input("Press enter to proceed... ")
             print(" ")
             continue
+
+def len_control(container):
+    if len(container) == 0:
+        print(" ")
+        print("The phonebook is empty, please add a contact first.")
+        input("Press enter to return to the main menu... ")
+        print(" ")
+        return False
+
+def strip_control(value):
+       if value.strip() == "":
+            print(" ")
+            print("*****************************************************************")
+            print("ERROR: The inserted name is not defined (empty space), try again.")
+            print("*****************************************************************")
+            print(" ")
+            input("Press enter to proceed... ")
+            return True
+
+
 
 
     
@@ -67,17 +88,19 @@ def phonebook():
         subprocess.run('cls', shell=True)
 
         #Options menu
-        digit = input("------------------- MAIN MENU -------------------\n"
-                      "To add a contact in your phonebook dial 1.\n"
-                      "To change a contact in your phonebook dial 2.\n" 
-                      "To search contacts dial 3.\n"
-                      "To save the changes and leave the menu dial 4.\n" 
+        digit = input("------------------ MAIN MENU ------------------\n"
+                      "\n"
+                      "To add a contact dial 1.\n"
+                      "To delete a contact dial 2.\n"
+                      "To change a contact dial 3.\n" 
+                      "To search contacts dial 4.\n"
+                      "To save the changes and leave the menu dial 5.\n" 
                       "Inserted value: ").strip()
         print(" ")
         
 
         #Operateable values control
-        if digit in ("1", "2", "3"):
+        if digit in ("1", "2", "3", "4"):
 
             #Number add
             if digit == "1": 
@@ -87,119 +110,130 @@ def phonebook():
                         break
                     print(" ")
             
-                    n_name_0 = input("Insert the contacts name: ").lower()
+                    name = " ".join(input("Insert the contacts name: ").lower().split())
                     
-                    if n_name_0.strip() == "":
-                        print(" ")
-                        print("*****************************************************************")
-                        print("ERROR: The inserted name is not defined (empty space), try again.")
-                        print("*****************************************************************")
-                        print(" ")
-                        input("Press enter to proceed... ")
+                    if strip_control(name) == True:
                         continue
+                    print(" ")  
 
-                    surname_0 = input("Insert the contacts surname: ").lower()
-                    name = (n_name_0, surname_0)
+                    surname = " ".join(input("Insert the contacts surname: ").lower().split())
+                    name_key = (name, surname)
 
-                    if name in phonebook:
+                    if name_key in phonebook:
                         print(" ")
                         print("This name already exists, try again.")
-                        input("Press a key to proceed... ")
+                        input("Press enter to proceed... ")
                         print(" ")
                         continue
                     else:
-                        number = input("Insert the persons number: ")
-                        phonebook[name] = number
+                        number = input("Insert the contacts number: ").strip()
+                        phonebook[name_key] = number
                         print(" ")
                         print("Contact was added successfully.")
                         input("Press enter to return to the main menu... ")
                         print(" ")
                         break
 
-            #Contact change
+            #Contact delete
             if digit == "2":
                 while True:
                     subprocess.run('cls', shell=True)
+                    
+                    if len_control(phonebook) == False:
+                        break
 
-                    if len(phonebook) == 0:
+                    if control() == False:
+                        break
+                    print(" ")
+
+                    name = " ".join(input("Insert the contacts name: ").lower().split())
+                    if strip_control(name) == True:
+                        continue
+                    surname = " ".join(input("Insert the contacts surname: ").lower().split())
+                    name_key = (name, surname)
+                    print(" ")
+
+                    if name_key in phonebook:
+                        print(f"ARE YOU SURE YOU WANT TO DELETE {name.title()} {surname.title()}?")
+                        if control() == False:
+                            break
+
+                        phonebook.pop(name_key)
                         print(" ")
-                        print("The phonebook is empty, please add a contact first.")
-                        input("Press enter to return to the main menu... ")
+                        print(f"The contact: {name.title()} {surname.title()} was deleted successfully.")
+                        input("Press enter to return to the main menu...")
+                        break
+
+                    else:
                         print(" ")
+                        print("The given name does not exist, try again.")
+                        input("Press enter to proceed... ")
+                        print(" ")
+                        continue
+
+
+            
+            #Contact change
+            if digit == "3":
+                while True:
+                    subprocess.run('cls', shell=True)
+
+                    if len_control(phonebook) == False:
                         break
 
                     if control() == False:
                         break
                     print(" ")
                     
-                    n_name_1 = input("Insert the contacts name: ").lower()
+                    name = " ".join(input("Insert the contacts name: ").lower().split())
                     
-                    if n_name_1.strip() == "":
-                        print(" ")
-                        print("*****************************************************************")
-                        print("ERROR: The inserted name is not defined (empty space), try again.")
-                        print("*****************************************************************")
-                        print(" ")
-                        input("Press enter to proceed... ")
-                        print(" ")
+                    if strip_control(name) == True:
                         continue
 
-                    surname_1= input("Insert the contacts surname: ").lower()
-                    name = (n_name_1, surname_1)
+                    surname = " ".join(input("Insert the contacts surname: ").lower().split())
+                    name_key = (name, surname)
                     print(" ")
-                    if name in phonebook:
-                        local_digit_0 = input("To change the name insert 1.\n"
-                                            "To change the number insert 2.\n"
-                                            "To change the name and number insert 3.\n"
-                                            "Inserted value: ")
+                    if name_key in phonebook:
+                        local_digit = input("To change the name insert 1.\n"
+                                              "To change the number insert 2.\n"
+                                              "To change the name and number insert 3.\n"
+                                              "Inserted value: ").strip()
                         print(" ")
-                        if local_digit_0 == "1":
-                            n_name_2 = input("Type in the new name: ").lower()
+                        if local_digit == "1":
+                            new_name = " ".join(input("Type in the new name: ").lower().split())
 
-                            if n_name_2.strip() == "":
-                                print(" ")
-                                print("*****************************************************************")
-                                print("ERROR: The inserted name is not defined (empty space), try again.")
-                                print("*****************************************************************")
-                                print(" ")
-                                input("Press enter to proceed... ")
+                            if strip_control(new_name) == True:
                                 continue
 
-                            surname_2 = input("Type in the new surname: ").lower()
-                            new_name = (n_name_2, surname_2)
-                            phonebook[new_name] = phonebook[name]
-                            phonebook.pop(name)
+                            new_surname = " ".join(input("Type in the new surname: ").lower().split())
+                            new_name_key = (new_name, new_surname)
+                            phonebook[new_name_key] = phonebook[name_key]
+                            phonebook.pop(name_key)
                             print(" ")
                             print("Contact was updated successfully.")
                             input("Press enter to return to the main menu... ")
                             print(" ")
                             break
 
-                        elif local_digit_0 == "2":
-                            new_number = input(f"Type in the new number for {n_name_1}: ")
-                            phonebook[name] = new_number
+                        elif local_digit == "2":
+                            new_number = input(f"Type in the new number for {name}: ").strip()
+                            phonebook[name_key] = new_number
                             print(" ")
                             print("Contact was updated successfully.")
-                            input("Press enter to return to the main menu... ")
+                            input("Press enter to return to the main menu...")
                             print("")
                             break
 
-                        elif local_digit_0 == "3":
-                            n_name_3 = input("Type in the new name: ").lower()
-                            if n_name_3.strip() == "":
-                                print(" ")
-                                print("*****************************************************************")
-                                print("ERROR: The inserted name is not defined (empty space), try again.")
-                                print("*****************************************************************")
-                                print(" ")
-                                input("Press enter to proceed... ")
+                        elif local_digit == "3":
+                            new_name = " ".join(input("Type in the new name: ").lower().split())
+                            if strip_control(new_name) == True:
                                 continue
 
-                            surname_3 = input("Type in the new surname: ").lower()
-                            new_name = (n_name_3, surname_3)
-                            new_number = input(f"Type in the new number for {n_name_3}: ")
-                            phonebook[new_name] = new_number
-                            phonebook.pop(name)
+                            new_surname = " ".join(input("Type in the new surname: ").lower().split())
+                            new_name_key = (new_name, new_surname)
+                            new_number = input(f"Type in the new number for {new_name}: ").strip()
+                            phonebook[new_name_key] = new_number
+                            phonebook.pop(name_key)
                             print(" ")
                             print("Contact was updated successfully.")
                             input("Press enter to return to the main menu... ")
@@ -223,15 +257,11 @@ def phonebook():
                         
 
             #Contact Search
-            if digit == "3":
+            if digit == "4":
                 subprocess.run('cls', shell=True)
 
                 while True:
-                    if len(phonebook) == 0:
-                        print(" ")
-                        print("The phonebook is empty, please add a contact first.")
-                        input("Press enter to return to the main menu... ")
-                        print(" ")
+                    if len_control(phonebook) == False:
                         break
 
                     if control() == False:
@@ -239,26 +269,22 @@ def phonebook():
                     print(" ")
                     subprocess.run('cls', shell=True)
                     
-                    local_digit_1 = input("To search a contacts number insert 1.\n"
+                    local_digit = input("To search a contacts number insert 1.\n"
                                             "To search the corresponding contacts to a certain number insert 2.\n"
                                             "To display all contacts at once insert 3.\n"
-                                            "Inserted value: ")
+                                            "Inserted value: ").strip()
+                    
                     print(" ")
-                    if local_digit_1 == "1":
-                        n_name_4 = input("Insert the contacts name: ").lower()
-                        if n_name_4.strip() == "":
-                            print(" ")
-                            print("*****************************************************************")
-                            print("ERROR: The inserted name is not defined (empty space), try again.")
-                            print("*****************************************************************")
-                            print(" ")
-                            input("Press enter to proceed... ")
+                    if local_digit == "1":
+                        name = " ".join(input("Insert the contacts name: ").lower().split())
+                        if strip_control(name) == True:
                             continue
-                        surname_4 = input("Insert the contacts surname: ").lower()
-                        name = (n_name_4, surname_4)
-                        if name in phonebook:
+
+                        surname = " ".join(input("Insert the contacts surname: ").lower().split())
+                        name_key = (name, surname)
+                        if name_key in phonebook:
                             print(" ")
-                            print(f"The contacts number is === {phonebook[name]} ===.")
+                            print(f"The contacts number is === {phonebook[name_key]} ===.")
                             print(" ")
                             input("Press enter to return to the main menu... ")
                             print(" ")
@@ -270,13 +296,14 @@ def phonebook():
                             input("Press enter to proceed... ")
                             print(" ")
                             continue
-                    elif local_digit_1 == "2":
-                        number = input("Insert the contacts number: ")
+
+                    elif local_digit == "2":
+                        number = input("Insert the contacts number: ").strip()
                         local_names = []
-                        for name in phonebook:
-                            if phonebook[name] == number:
-                                local_names.append(name)
-                                print(f"--- A corresponding contact is {name[0]} {name[1]} ---")
+                        for name_key in phonebook:
+                            if phonebook[name_key] == number:
+                                local_names.append(name_key[0] + " " + name_key[1])
+                                print(f"--- A corresponding contact is {name_key[0]} {name_key[1]} ---")
 
                         if len(local_names) == 0:
                             print(" ")
@@ -288,14 +315,13 @@ def phonebook():
                         else:
                             print(" ")
                             input("Press enter to return to the main menu... ")
-                            
                             break
 
-                    elif local_digit_1 == "3":
+                    elif local_digit == "3":
                         counter = 0
-                        for name in phonebook:
+                        for name_key in phonebook:
                             counter += 1
-                            print(f"### {counter}. name: {name[0]} {name[1]}, number: {phonebook[name]} ###")
+                            print(f"### {counter}. name: {name_key[0]} {name_key[1]}, number: {phonebook[name_key]} ###")
                             print(" ")
                         input("Press enter to return to the main menu... ")
                         print(" ")
@@ -313,7 +339,7 @@ def phonebook():
 
                                                     
         #saving and leaving the function
-        elif digit == "4":
+        elif digit == "5":
             with open(file_path, "wb") as file:
                 pickle.dump(phonebook, file)
 
