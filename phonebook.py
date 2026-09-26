@@ -93,7 +93,7 @@ def phonebook():
                       "To add a new contact dial 1.\n"
                       "To delete a contact dial 2.\n"
                       "To edit a contact dial 3.\n" 
-                      "To search for contact dial 4.\n"
+                      "To search for a contact dial 4.\n"
                       "To save changes and exit dial 5.\n" 
                       "Inserted value: ").strip()
         print(" ")
@@ -283,15 +283,16 @@ def phonebook():
 
             #Contact Search
             if digit == "4":
-                subprocess.run('cls', shell=True)
-
+                
                 while True:
+                    subprocess.run('cls', shell=True)
+                    
                     if len_control(phonebook) == False:
                         break
 
                     print("-------------- SEARCH MENU --------------\n")
                     print(" ")
-                    
+
                     if control() == False:
                         break
                     print(" ")
