@@ -53,7 +53,6 @@ def len_control(container):
 
 def strip_control(value):
        if value.strip() == "":
-            print(" ")
             print("*****************************************************************")
             print("ERROR: The inserted name is not defined (empty space), try again.")
             print("*****************************************************************")
@@ -62,9 +61,6 @@ def strip_control(value):
             return True
 
 
-
-
-    
 
 def phonebook():
     '''
@@ -121,7 +117,7 @@ def phonebook():
                     
                     if strip_control(name) == True:
                         continue
-                    print(" ")  
+                    
 
                     surname = " ".join(input("Insert the contact's surname: ").lower().split())
                     name_key = (name, surname)
@@ -130,15 +126,15 @@ def phonebook():
                         print(" ")
                         print("This name already exists! You cannot overwrite an existing contact.")
                         input("Press enter to proceed...")
-                        print(" ")
                         continue
+
                     else:
+                        print(" ")
                         number = input(f"Insert the number for {name.title()} {surname.title()}: ").strip()
                         phonebook[name_key] = number
                         print(" ")
                         print("Contact was added successfully.")
                         input("Press enter to return to the main menu...")
-                        print(" ")
                         break
 
             #Contact delete
@@ -154,7 +150,6 @@ def phonebook():
 
                     if control() == False:
                         break
-                    print(" ")
 
                     name = " ".join(input("Insert the contact's name: ").lower().split())
                     if strip_control(name) == True:
@@ -175,7 +170,6 @@ def phonebook():
                         break
 
                     else:
-                        print(" ")
                         print("The given name does not exist, try again.")
                         input("Press enter to proceed...")
                         print(" ")
@@ -195,7 +189,6 @@ def phonebook():
 
                     if control() == False:
                         break
-                    print(" ")
                     
                     name = " ".join(input("Insert the contact's name: ").lower().split())
                     
@@ -206,11 +199,19 @@ def phonebook():
                     name_key = (name, surname)
                     print(" ")
                     if name_key in phonebook:
+                        subprocess.run('cls', shell=True)
+                        print("-------------- EDIT CONTACT -------------\n")
+                        print(" ")
+
                         local_digit = input("To change the name insert 1.\n"
                                             "To change the number insert 2.\n"
                                             "To change the name and number insert 3.\n"
                                             "Inserted value: ").strip()
+
+                        subprocess.run('cls', shell=True)
+                        print("-------------- EDIT CONTACT -------------\n")
                         print(" ")
+                        
                         if local_digit == "1":
                             new_name = " ".join(input("Type in the new name: ").lower().split())
 
@@ -271,7 +272,6 @@ def phonebook():
                             break
                         else:
                             print(" ")
-                            print(" ")
                             print("***********************************************************")
                             print("ERROR: The inserted value is not in the domain, try again.")
                             print("***********************************************************")
@@ -300,14 +300,16 @@ def phonebook():
 
                     if control() == False:
                         break
-                    print(" ")
                     
                     local_digit = input("To search for a contact's number insert 1.\n"
                                         "To find the contact corresponding to a number insert 2.\n"
                                         "To display all contacts at once insert 3.\n"
                                         "Inserted value: ").strip()
-                    
+
+                    subprocess.run('cls', shell=True)
+                    print("-------------- SEARCH MENU --------------\n")
                     print(" ")
+                    
                     if local_digit == "1":
                         name = " ".join(input("Insert the contact's name: ").lower().split())
                         if strip_control(name) == True:
@@ -318,14 +320,12 @@ def phonebook():
                         if name_key in phonebook:
                             print(" ")
                             print(f"The number for {name.title()} {surname.title()} is === {phonebook[name_key]} ===.")
-                            print(" ")
                             input("Press enter to return to the main menu...")
                             print(" ")
                             break
                         else:
                             print(" ")
                             print("The given name does not exist, try again.")
-                            print(" ")
                             input("Press enter to proceed...")
                             print(" ")
                             continue
@@ -341,7 +341,6 @@ def phonebook():
                         if contact_found == False:
                             print(" ")
                             print("The given number does not exist, try again.")
-                            print(" ")
                             input("Press enter to proceed...")
                             print(" ")
                             continue
