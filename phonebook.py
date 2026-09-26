@@ -26,7 +26,7 @@ def control():
             
         elif progress in ("continue", "c"):
             print(" ") 
-            break
+            return True
             
         else:
             print(" ")
@@ -121,7 +121,7 @@ def phonebook():
 
                     if name_key in phonebook:
                         print(" ")
-                        print("This name already exists, try again.")
+                        print("This name already exists! You cannot overwrite an existing contact.")
                         input("Press enter to proceed...")
                         print(" ")
                         continue
@@ -207,6 +207,15 @@ def phonebook():
 
                             new_surname = " ".join(input("Type in the new surname: ").lower().split())
                             new_name_key = (new_name, new_surname)
+
+                            #Checking for already existing contacts
+                            if new_name_key in phonebook:
+                                print(" ")
+                                print("This name already exists! You cannot overwrite an existing contact.")
+                                input("Press enter to proceed...")
+                                print(" ")
+                                continue
+                            
                             phonebook[new_name_key] = phonebook[name_key]
                             phonebook.pop(name_key)
                             print(" ")
@@ -231,6 +240,15 @@ def phonebook():
 
                             new_surname = " ".join(input("Type in the new surname: ").lower().split())
                             new_name_key = (new_name, new_surname)
+                            
+                            #Checking for already existing contacts
+                            if new_name_key in phonebook:
+                                print(" ")
+                                print("This name already exists! You cannot overwrite an existing contact.")
+                                input("Press enter to proceed...")
+                                print(" ")
+                                continue
+
                             new_number = input(f"Type in the new number for {new_name}: ").strip()
                             phonebook[new_name_key] = new_number
                             phonebook.pop(name_key)
@@ -299,13 +317,13 @@ def phonebook():
 
                     elif local_digit == "2":
                         number = input("Insert the contacts number: ").strip()
-                        local_names = []
+                        contact_found = False
                         for name_key in phonebook:
                             if phonebook[name_key] == number:
-                                local_names.append(name_key[0] + " " + name_key[1])
+                                contact_found = True
                                 print(f"--- A corresponding contact is {name_key[0]} {name_key[1]} ---")
 
-                        if len(local_names) == 0:
+                        if contact_found == False:
                             print(" ")
                             print("The given number does not exist, try again.")
                             print(" ")
