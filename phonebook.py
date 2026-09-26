@@ -5,14 +5,19 @@ import sys
 
 
 
-#Check if we run .exe file or normal script
-if getattr(sys, 'frozen', False):
-    current_dir = os.path.dirname(sys.executable)
+# Set base directory for data storage
+if os.name == 'nt':
+    base_dir = os.getenv('LOCALAPPDATA')
 else:
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    base_dir = os.path.expanduser('~')
 
-#Creation the path for the pickle database
-file_path = os.path.join(current_dir, "phonebook.pkl")
+# Set and create app-specific directory
+app_dir = os.path.join(base_dir, "PhonebookApp")
+if not os.path.exists(app_dir):
+    os.makedirs(app_dir)
+
+# Define absolute database path
+file_path = os.path.join(app_dir, "phonebook.pkl")
 
 
 def control():
@@ -286,7 +291,7 @@ def phonebook():
                 
                 while True:
                     subprocess.run('cls', shell=True)
-                    
+
                     if len_control(phonebook) == False:
                         break
 
